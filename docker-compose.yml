@@ -21,6 +21,8 @@ services:
 
   mongo1:
     image: mongo
+    ports:
+      - 27017:27017
     expose:
       - 27017
     networks:
@@ -42,19 +44,6 @@ services:
     networks:
       - kakfa_stream_playground
     entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "r0" ]
-
-  mongoku:
-    image: huggingface/mongoku
-    ports:
-      - 3100:3100
-    depends_on:
-      - mongo1
-      - mongo2
-      - mongo3
-    networks:
-      - kakfa_stream_playground
-    environment:
-      MONGOKU_DEFAULT_HOST: "mongodb://mongo1:27017"
 
   zookeeper:
     image: wurstmeister/zookeeper
