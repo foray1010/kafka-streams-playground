@@ -63,6 +63,19 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+  kafdrop:
+    image: obsidiandynamics/kafdrop
+    ports:
+      - 9000:9000
+    networks:
+      - kakfa_stream_playground
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_BROKERCONNECT: kafka:9092
+      JVM_OPTS: -Xms32M -Xmx64M
+      SERVER_SERVLET_CONTEXTPATH: /
+
   connect:
     image: confluentinc/cp-kafka-connect
     ports:
@@ -95,7 +108,7 @@ services:
       CONNECT_PLUGIN_PATH: /connect-plugins
       CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
 
-  elastic:
+  elasticsearch:
     image: elasticsearch:7.9.0
     ports:
       - 9200:9200
@@ -112,9 +125,9 @@ services:
     networks:
       - kakfa_stream_playground
     depends_on:
-      - elastic
+      - elasticsearch
     environment:
-      ELASTICSEARCH_HOSTS: http://elastic:9200
+      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
 
 networks:
   kakfa_stream_playground:
