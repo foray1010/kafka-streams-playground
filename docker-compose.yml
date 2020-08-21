@@ -1,6 +1,5 @@
-version: "3.7"
+version: "3.8"
 services:
-
   server:
     image: elleflorio/kafka-streams-playground
     expose:
@@ -20,7 +19,7 @@ services:
       KAFKA_HOSTS: kafka:9092
 
   mongo1:
-    image: mongo
+    image: mongo:4.0
     ports:
       - 27017:27017
     expose:
@@ -30,7 +29,7 @@ services:
     entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "r0" ]
 
   mongo2:
-    image: mongo
+    image: mongo:4.0
     expose:
       - 27017
     networks:
@@ -38,7 +37,7 @@ services:
     entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "r0" ]
 
   mongo3:
-    image: mongo
+    image: mongo:4.0
     expose:
       - 27017
     networks:
@@ -97,7 +96,7 @@ services:
       CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
 
   elastic:
-    image: elasticsearch:7.4.2
+    image: elasticsearch:7.9.0
     ports:
       - 9200:9200
       - 9300:9300
@@ -107,7 +106,7 @@ services:
       discovery.type: single-node
 
   kibana:
-    image: kibana:7.4.2
+    image: kibana:7.9.0
     ports:
       - 5601:5601
     networks:
