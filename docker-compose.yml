@@ -45,7 +45,7 @@ services:
     entrypoint: [ "/usr/bin/mongod", "--bind_ip_all", "--replSet", "r0" ]
 
   zookeeper:
-    image: wurstmeister/zookeeper
+    image: zookeeper:3.6
     ports:
       - 2181:2181
     networks:
