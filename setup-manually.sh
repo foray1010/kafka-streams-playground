@@ -27,7 +27,7 @@ curl -X POST \
     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
     "value.converter.schemas.enable": "false",
     "schema.ignore": "true",
-    "connection.url": "http://elastic:9200",
+    "connection.url": "http://elasticsearch:9200",
     "type.name": "kafka-connect",
     "behavior.on.malformed.documents": "warn",
     "name": "photo-connector"
@@ -55,7 +55,7 @@ curl -X POST \
     "value.converter": "org.apache.kafka.connect.json.JsonConverter",
     "value.converter.schemas.enable": "false",
     "schema.ignore": "true",
-    "connection.url": "http://elastic:9200",
+    "connection.url": "http://elasticsearch:9200",
     "type.name": "kafka-connect",
     "behavior.on.malformed.documents": "warn",
     "name": "long-exposure-connector"
