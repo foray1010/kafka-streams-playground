@@ -87,6 +87,7 @@ services:
     depends_on:
       - zookeeper
       - kafka
+      - elastic
     volumes:
       - $PWD/connect-plugins:/connect-plugins
     environment:
@@ -110,7 +111,7 @@ services:
       CONNECT_PLUGIN_PATH: /connect-plugins
       CONNECT_LOG4J_ROOT_LOGLEVEL: INFO
 
-  elasticsearch:
+  elastic:
     image: elasticsearch:7.9.0
     ports:
       - 9200:9200
@@ -127,9 +128,9 @@ services:
     networks:
       - kakfa_stream_playground
     depends_on:
-      - elasticsearch
+      - elastic
     environment:
-      ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+      ELASTICSEARCH_HOSTS: http://elastic:9200
     logging:
       driver: none
 
