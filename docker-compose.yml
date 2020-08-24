@@ -75,6 +75,8 @@ services:
       KAFKA_BROKERCONNECT: kafka:9092
       JVM_OPTS: -Xms32M -Xmx64M
       SERVER_SERVLET_CONTEXTPATH: /
+    logging:
+      driver: none
 
   connect:
     image: confluentinc/cp-kafka-connect:5.5.1
@@ -128,6 +130,8 @@ services:
       - elasticsearch
     environment:
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+    logging:
+      driver: none
 
 networks:
   kakfa_stream_playground:
